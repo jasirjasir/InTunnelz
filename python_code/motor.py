@@ -18,7 +18,7 @@ class DCMotor:
         GPIO.output(self.in1,GPIO.LOW)
         GPIO.output(self.in2,GPIO.LOW)
         self.pwm=GPIO.PWM(self.en,1000)
-        self.pwm.start(25)
+        self.pwm.start(80)
 
 
     def rotate_forward(self):
@@ -54,6 +54,6 @@ class DCMotor:
     def speed_control(self, dutycycle):
         self.pwm.ChangeDutyCycle(dutycycle)
 
-
+GPIO.setwarnings(False)
 motor1 = DCMotor(23,24,25)
-motor1.rotate_forward()
+#motor1.rotate_forward()

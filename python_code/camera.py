@@ -18,14 +18,18 @@ def decoder(image):
             motor.motor1.rotate_forward()
 
 def captureFrame():
-    cap = cv2.VideoCapture(0)
-    while True:
-        if counter == skip_frame_count: 
-            ret, frame = cap.read()
-            decoder(frame)
-            img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            counter = 0
-        else :
-            ret = cap.grab() 
-            counter += 1 
+    try:
+        cap = cv2.VideoCapture(0)
+        global counter
+        while True:
+            if counter == skip_frame_count: 
+                ret, frame = cap.read()
+                decoder(frame)
+                img = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                counter = 0
+            else :
+                ret = cap.grab() 
+                counter += 1
+    except cv2.error as e:
+        print ("error while rading camera" , e)
             
